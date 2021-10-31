@@ -1,0 +1,161 @@
+#include<SoftwareSerial.h>
+
+int bulb1 = 8;
+int bulb2 = 9;
+int bulb3 = 10;
+int bulb4 = 11;
+
+SoftwareSerial bt(0,1); /* (Rx,Tx) */
+
+String str;
+
+void setup() {
+bt.begin(9600);
+Serial.begin(9600);
+
+pinMode(bulb1,OUTPUT);
+pinMode(bulb2,OUTPUT);
+pinMode(bulb3,OUTPUT);
+pinMode(bulb4,OUTPUT);
+
+}
+
+void loop() {
+
+if (bt.available())
+{
+str = bt.read();
+Serial.println(str);
+//bulb1
+if(str==”bulb1 on”)
+{
+digitalWrite(bulb1,HIGH);
+Serial.println(“BUlB 1 is ON”);
+}
+else if(str==”bulb1 off”)
+{
+digitalWrite(bulb1,LOW);
+Serial.println(“BUlB 1 is OFF”);
+}
+else
+{
+digitalWrite(bulb1,LOW);
+}
+//bulb2
+if(str==”bulb2 on”)
+{
+digitalWrite(bulb2,HIGH);
+Serial.println(“BUlB 2 is ON”);
+}
+else if(str==”bulb2 off”)
+{
+digitalWrite(bulb2,LOW);
+Serial.println(“BUlB 2 is OFF”);
+}
+else
+{
+digitalWrite(bulb2,LOW);
+}
+////bulb3
+if(str==”bulb3 on”)
+{
+digitalWrite(bulb3,HIGH);
+Serial.println(“BUlB 3 is ON”);
+}
+else if(str==”bulb3 off”)
+{
+digitalWrite(bulb3,LOW);
+Serial.println(“BUlB 3 is OFF”);
+}
+else
+{
+digitalWrite(bulb3,LOW);
+}
+//bulb4
+if(str==”bulb4 on”)
+{
+digitalWrite(bulb4,HIGH);
+Serial.println(“BUlB 4 is ON”);
+}
+else if(str==”bulb4 off”)
+{
+digitalWrite(bulb4,LOW);
+Serial.println(“BUlB 4 is OFF”);
+}
+else
+{
+digitalWrite(bulb4,LOW);
+}
+
+
+ 
+}
+}
+
+
+Programming Code Explanation
+Include the libraries required for the project, SoftwareSerial.h library is imported for serial communication with Bluetooth Module HC-05.
+
+#include<SoftwareSerial.h>
+
+Declaration of variables of output pins of Arduino at 8, 9, 10 and 11 which goes to data pin of each of the four relays. Variable string “str” stores the data we get from smartphone using HC-05 Bluetooth Module.
+
+int bulb1 = 8;
+
+int bulb2 = 9;
+
+int bulb3 = 10;
+
+int bulb4 = 11;
+
+String str;
+
+
+ 
+ pinMode(bulb1,OUTPUT);
+
+ pinMode(bulb2,OUTPUT);
+
+ pinMode(bulb3,OUTPUT);
+
+ pinMode(bulb4,OUTPUT);
+
+Bluetooth serial communication and serial monitor are initiated at 9600 baud rate.
+
+  bt.begin(9600);              
+
+  Serial.begin(9600);      
+
+If the data got from the smartphone using Bluetooth Module HC-05 is “bulb1 on” then we turn on the bulb 1 by setting data pin of the relay as HIGH. If data is “bulb1 off” then we turn off the bulb by setting the data pin of the relay as LOW. If no data received for bulb 1 then we set our bulb 1 to LOW. The same thing is done for bulb 2, bulb 3, bulb 4.
+
+if(str==”bulb1 on”)
+
+     {
+
+
+ 
+      digitalWrite(bulb1,HIGH);
+
+      Serial.println(“BUlB 1 is ON”);
+
+     }
+
+     else if(str==”bulb1 off”)
+
+     {
+
+      digitalWrite(bulb1,LOW);
+
+      Serial.println(“BUlB 1 is OFF”);
+
+     }
+
+     else
+
+     {
+
+
+ 
+      digitalWrite(bulb1,LOW);
+
+     }
